@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 240 20% 99%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 263 70% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 191 92% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 243 75% 59%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(263 70% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(263 70% 50%) 50%, hsl(283 65% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.8) 0%, hsl(243 75% 99% / 0.6) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(243 75% 59% / 0.3);
+    --shadow-card: 0 10px 40px hsl(243 50% 30% / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Iridescent Background */
+    --iridescent-gradient: linear-gradient(
+      45deg,
+      hsl(243 75% 59%) 0%,
+      hsl(263 70% 50%) 15%,
+      hsl(283 65% 45%) 30%,
+      hsl(191 92% 48%) 45%,
+      hsl(243 75% 59%) 60%,
+      hsl(263 70% 50%) 75%,
+      hsl(191 92% 48%) 90%,
+      hsl(243 75% 59%) 100%
+    );
+  }
+
+  .dark {
+    --background: 240 10% 8%;
+    --foreground: 240 5% 96%;
+
+    --card: 240 8% 12%;
+    --card-foreground: 240 5% 96%;
+
+    --popover: 240 8% 12%;
+    --popover-foreground: 240 5% 96%;
+
+    --primary: 243 75% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 263 70% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 240 5% 20%;
+    --muted-foreground: 240 5% 64%;
+
+    --accent: 191 92% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 20%;
+    --input: 240 5% 20%;
+    --ring: 243 75% 59%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(263 70% 50%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(243 75% 59%) 0%, hsl(263 70% 50%) 50%, hsl(283 65% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(240 8% 16%) 0%, hsl(243 20% 12%) 100%);
+    
+    --shadow-glow: 0 0 60px hsl(243 75% 59% / 0.5);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.3);
+    
+    --iridescent-gradient: linear-gradient(
+      45deg,
+      hsl(243 75% 59%) 0%,
+      hsl(263 70% 50%) 15%,
+      hsl(283 65% 45%) 30%,
+      hsl(191 92% 48%) 45%,
+      hsl(243 75% 59%) 60%,
+      hsl(263 70% 50%) 75%,
+      hsl(191 92% 48%) 90%,
+      hsl(243 75% 59%) 100%
+    );
+  }
+}
+
+@keyframes iridescent {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--iridescent-gradient);
+    background-size: 400% 400%;
+    animation: iridescent 15s ease infinite;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
